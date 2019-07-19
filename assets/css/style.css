@@ -9,3 +9,13 @@ img {
     width: 100px;
 
 }
+
+div {
+    box-sizing: border-box;
+    border: 3px pink;
+    margin: 5px;
+    background: gray;
+    width: 35%;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+}

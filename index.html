@@ -3,24 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>Jewel Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-    <div id = "header">Pokemon Collector</div>
-    <div id= "instructions">Instructions</div>
+    <div id = "header">Pokemon Battle</div>
+    <div id= "instructions">Instructions</div> 
+     <!-- add instruction info  -->
     <div id ="cpu-score"></div>
     <div id= "scores">Wins: 
         <span id = "wins"></span><br>
         Losses: <span id="losses"></span>
     </div>
-    
-    <button id="pickachu"><img src = "assets/images/pickachu.png"></button>
+
+    <button id="pikachu"><img src = "assets/images/pickachu.png"></button>
     <button id="bulbasaur"><img src = "assets/images/bulbasaur.png"></button>
     <button id="charmander"><img src = "assets/images/charmander.png"></button>
     <button id="squirtle"><img src = "assets/images/squirtle.png"></button>
 
-    <div id = "total-score">Your Total Score is:
+    <div id = "total-score">Your Hit Score is:
         <span id="user-score"></span>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var cpuRan = Math.floor(Math.random()*130)+19;
+        $("#cpu-score").text(cpuRan);
+
+        var pika = Math.ceil(Math.random()*12);
+        var bulb = Math.ceil(Math.random()*12);
+        var char = Math.ceil(Math.random()*12);
+        var squir = Math.ceil(Math.random()*12);
+        var wins = 0;
+        var losses = 0;
+        var userScore = []; 
+
+        $("#pikachu").on("click", function(){
+            $(this).attr("data-type", pika);
+            userScore.push(pika);
+            $("#user-score").html(userScore);
+        });
+
+        $("#bulbasaur").on("click", function(){
+            $(this).attr("data-type", bulb);
+            userScore.push(bulb);
+            $("#user-score").html(userScore);
+        });
+
+        $("#charmander").on("click", function(){
+            $(this).attr("data-type", char);
+            userScore.push(char);
+            $("#user-score").html(userScore);
+        });
+
+        $("#squirtle").on("click", function(){
+            $(this).attr("data-type", squir);
+            userScore.push(squir);
+            $("#user-score").html(userScore);
+        });
+
+        //need to add up numbers in array for user's hit score
+
+        if (userScore == cpuRan){
+            wins++;
+            $("#wins").text(wins)
+        }else if (userScore > cpuRan){
+            losses++;
+            $("#losses").text(losses)
+        }
+
+    </script>
 </body>
 </html>
