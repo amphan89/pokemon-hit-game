@@ -8,9 +8,12 @@
 </head>
 <body>
     <div id = "header">Pokemon Battle</div>
-    <div id= "instructions">Instructions</div> 
+    <div id= "instructions">Instructions:<br>
+    Click on a Pokemon to add up your hit score to match the computer score. <br>
+    If you go over the computer score, you lose. <br>
+    If you match the computer score, you win!</div> 
      <!-- add instruction info  -->
-    <div id ="cpu-score"></div>
+    <div>Computer Score: <span id ="cpu-score"></span></div>
     <div id= "scores">Wins: 
         <span id = "wins"></span><br>
         Losses: <span id="losses"></span>
@@ -27,6 +30,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
+        
         var cpuRan = Math.floor(Math.random()*130)+19;
         $("#cpu-score").text(cpuRan);
 
@@ -37,39 +41,61 @@
         var wins = 0;
         var losses = 0;
         var userScore = []; 
+        
+        function arrSum(userScore){
+            var sum = 0;
+            for (var i=0; i<userScore.length; i++){
+            sum += userScore[i];
+        }
+            return sum;
+            $("#user-score").html(sum)
+        }
 
         $("#pikachu").on("click", function(){
             $(this).attr("data-type", pika);
             userScore.push(pika);
-            $("#user-score").html(userScore);
+            $("#user-score").html(arrSum(userScore));
+      
         });
 
         $("#bulbasaur").on("click", function(){
             $(this).attr("data-type", bulb);
             userScore.push(bulb);
-            $("#user-score").html(userScore);
+            $("#user-score").html(arrSum(userScore));
         });
 
         $("#charmander").on("click", function(){
             $(this).attr("data-type", char);
             userScore.push(char);
-            $("#user-score").html(userScore);
+            $("#user-score").html(arrSum(userScore));
         });
 
         $("#squirtle").on("click", function(){
             $(this).attr("data-type", squir);
             userScore.push(squir);
-            $("#user-score").html(userScore);
+            $("#user-score").html(arrSum(userScore));
         });
 
-        //need to add up numbers in array for user's hit score
+        function reset (){
+            var cpuRan = Math.floor(Math.random()*130)+19;
+        $("#cpu-score").text(cpuRan);
+            var pika = Math.ceil(Math.random()*12);
+            var bulb = Math.ceil(Math.random()*12);
+            var char = Math.ceil(Math.random()*12);
+            var squir = Math.ceil(Math.random()*12);
+            var wins = 0;
+            var losses = 0;
+            var userScore = []; 
+        }
 
         if (userScore == cpuRan){
             wins++;
             $("#wins").text(wins)
+            reset();
         }else if (userScore > cpuRan){
             losses++;
             $("#losses").text(losses)
+            reset();
         }
 
     </script>
