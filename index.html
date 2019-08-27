@@ -19,10 +19,10 @@
         Losses: <span id="losses"></span>
     </div>
 
-    <button id="pikachu"><img src = "assets/images/pickachu.png"></button>
-    <button id="bulbasaur"><img src = "assets/images/bulbasaur.png"></button>
-    <button id="charmander"><img src = "assets/images/charmander.png"></button>
-    <button id="squirtle"><img src = "assets/images/squirtle.png"></button>
+    <button id="pikachu"><img src = "assets/images/pickachu.PNG"></button>
+    <button id="bulbasaur"><img src = "assets/images/bulbasaur.PNG"></button>
+    <button id="charmander"><img src = "assets/images/charmander.PNG"></button>
+    <button id="squirtle"><img src = "assets/images/squirtle.PNG"></button>
 
     <div id = "total-score">Your Hit Score is:
         <span id="user-score"></span>
@@ -40,40 +40,43 @@
         var squir = Math.ceil(Math.random()*12);
         var wins = 0;
         var losses = 0;
-        var userScore = []; 
+        var userScore = 0; 
         
-        function arrSum(userScore){
-            var sum = 0;
-            for (var i=0; i<userScore.length; i++){
-            sum += userScore[i];
-        }
-            return sum;
-            $("#user-score").html(sum)
+        // function arrSum(userScore){
+        //     var sum = 0;
+        //     for (var i=0; i<userScore.length; i++){
+        //     sum += userScore;
+        // }
+        //     return sum;
+        //     $("#user-score").html(sum)
+        // }
+        function countSum (){
+            $('#user-score').html(userScore) 
+            console.log(userScore);
         }
 
         $("#pikachu").on("click", function(){
             $(this).attr("data-type", pika);
-            userScore.push(pika);
-            $("#user-score").html(arrSum(userScore));
-      
+            userScore += pika 
+            countSum();
         });
 
         $("#bulbasaur").on("click", function(){
             $(this).attr("data-type", bulb);
-            userScore.push(bulb);
-            $("#user-score").html(arrSum(userScore));
+            userScore += bulb 
+            countSum();
         });
 
         $("#charmander").on("click", function(){
             $(this).attr("data-type", char);
-            userScore.push(char);
-            $("#user-score").html(arrSum(userScore));
+            userScore += char 
+            countSum();
         });
 
         $("#squirtle").on("click", function(){
             $(this).attr("data-type", squir);
-            userScore.push(squir);
-            $("#user-score").html(arrSum(userScore));
+            userScore += squir 
+            countSum();
         });
 
         function reset (){
@@ -87,8 +90,10 @@
             var losses = 0;
             var userScore = []; 
         }
+        console.log(userScore);
+        console.log(cpuRan);
 
-        if (userScore == cpuRan){
+        if (userScore === cpuRan){
             wins++;
             $("#wins").text(wins)
             reset();
@@ -97,7 +102,6 @@
             $("#losses").text(losses)
             reset();
         }
-
     </script>
 </body>
 </html>
